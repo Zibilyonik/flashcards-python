@@ -1,10 +1,10 @@
 #python3
 
 
-front = "Potato"
-back = "Brotato"
+FRONT = "Potato"
+BACK = "Brotato"
 
 print("Card:")
-print(front)
+print(FRONT)
 print("Definition")
-print(back)
+print(BACK)
