@@ -6,5 +6,5 @@ BACK = "Brotato"
 
 print("Card:")
 print(FRONT)
-print("Definition")
+print("Definition:")
 print(BACK)
