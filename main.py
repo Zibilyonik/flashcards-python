@@ -1,10 +1,10 @@
 #python3
 
-
-FRONT = "Potato"
-BACK = "Brotato"
-
-print("Card:")
-print(FRONT)
-print("Definition:")
-print(BACK)
+front = input()
+back = input()
+answer = input()
+if back == answer:
+    print("Your answer is right!")
+else:
+    print("Your answer is wrong...")
+    
