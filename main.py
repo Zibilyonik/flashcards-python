@@ -1,5 +1,15 @@
 #python3
 
+class FlashCard:
+    all_cards = []
+    def __init__(self, front, back):
+        self.front = front
+        self.back = back
+        self.all_cards.append(self)
+
+    def __str__(self):
+        return f"Front: {self.front}, Back: {self.back}"
+
 
 def add_card(cards_list, card_number):
     print(f"The term for card #{card_number}:")
