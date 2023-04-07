@@ -75,19 +75,23 @@ def remove_card():
     printer(f"Can't remove \"{card_to_remove}\": there is no such card.")
 
 
-def check_answer(card):
-    printer(f"Print the definition of \"{card.front}\"):")
+def check_answer(selected_card):
+    printer(f"Print the definition of \"{selected_card.front}\"):")
     answer = str(input())
     printer(answer, True)
-    if answer == card.back:
+    if answer == selected_card.back:
         printer("Correct!")
     elif answer in [card.back for card in FlashCard.all_cards]:
-        card.wrong += 1
+        wrong_count = int(selected_card.wrong)
+        wrong_count += 1
+        selected_card.wrong = wrong_count
         printer(
-            f"Wrong. The right answer is \"{card.back}\", but your definition is correct for \"{[card.front for card in FlashCard.all_cards if card.back == answer][0]}\".")
+            f"Wrong. The right answer is \"{selected_card.back}\", but your definition is correct for \"{[card.front for card in FlashCard.all_cards if card.back == answer][0]}\".")
     else:
-        card.wrong += 1
-        printer(f"Wrong. The right answer is \"{card.back}\".")
+        wrong_count = int(selected_card.wrong)
+        wrong_count += 1
+        selected_card.wrong = wrong_count
+        printer(f"Wrong. The right answer is \"{selected_card.back}\".")
 
 
 def ask_cards():
