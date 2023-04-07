@@ -3,6 +3,7 @@
 import random
 import os
 from contextlib import redirect_stdout
+import argparse
 
 
 class FlashCard:
@@ -94,10 +95,11 @@ def ask_cards():
     check_answer(random_card)
 
 
-def import_cards():
-    printer("File name:")
-    file_name = input()
-    printer(file_name, True)
+def import_cards(file_name = ""):
+    if not file_name:
+        printer("File name:")
+        file_name = input()
+        printer(file_name, True)
     counter = 0
     try:
         with open(file_name, "r") as file:
@@ -115,10 +117,11 @@ def import_cards():
         printer("File not found.")
 
 
-def export_cards():
-    printer("File name:")
-    file_name = input()
-    printer(file_name, True)
+def export_cards(file_name = ""):
+    if not file_name:
+        printer("File name:")
+        file_name = input()
+        printer(file_name, True)
     with open(file_name, "w") as file:
         for card in FlashCard.all_cards:
             file.write(f"{card.front}:{card.back}:{card.wrong}|")
@@ -191,10 +194,17 @@ def print_menu():
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--import_from")
+    parser.add_argument("--export_to")
+    args = parser.parse_args()
+    if args.import_from:
+        import_cards(args.import_from)
     while True:
         if not print_menu():
+            if args.export_to:
+                export_cards(args.export_to)
             break
-
 
 if __name__ == "__main__":
     main()
